@@ -1,37 +1,34 @@
+import java.util.*;
+
 public class Main {
     public static void main(String[] args) {
 
-        //ogretmenler
-      Teacher t1= new Teacher("burak","555","YZLM");
-      Teacher t2= new Teacher("gamze","555","GLSM");
-      Teacher t3= new Teacher("rabia","555","DIS");
-
-      //Dersler
-      Course yazilim=new Course("Yazılım","yazılım101","YZLM");
-      Course gelisim=new Course("Gelişim","gelisim101","GLSM");
-      Course dis=new Course("Diş","dıs101","DIS");
-      /*
-      yazilim.addTeacher(t1);
-      gelisim.addTeacher(t2);
-      dis.addTeacher(t3);
-        */
-      Student s1= new Student("nisa","3838","java101",yazilim,gelisim,dis);
-      Student s2= new Student("ümit","3838","java101",yazilim,gelisim,dis);
-      s1.addBulkExamNote(50,70,80);
-      s1.addBulksozNote(90,60,45);
-      s1.printNote();
-      s1.avarage();
-      s1.isPass();
+        TreeSet<Book> book = new TreeSet<>();
 
 
-      s2.addBulkExamNote(40,40,80);
-      s2.addBulksozNote(55,15,83);
-      s2.printNote();
-      s2.avarage();
-      s2.isPass();
+        book.add(new Book("Gece Yarısı Kütüphanesi",296,"Matt Haig",2005));
+        book.add(new Book("Nietzsche Ağladığında",432,"Irvin D. Yalom",1985));
+        book.add(new Book("Yalın Tutku",56,"Annie Ernaux",2022));
+        book.add(new Book("Kırmızı Pazartesi",200,"Gabriel Garcia Marquez",2000));
+        book.add(new Book("Fedailerin Kalesi Alamut",510,"Vladimir Bartol",2012));
 
+        TreeSet<Book> book1 = new TreeSet<>(new Comparator<Book>() {
+            @Override
+            public int compare(Book o1, Book o2) {
+                return o1.getBookPage()- o2.getBookPage();
+            }
+        });
 
-
-
+        book1.addAll(book);
+        System.out.println("================= İsime göre sıralama==================");
+        for (Book name : book){
+            System.out.println("Sayfa sayısı:"+name.getBookPage()+" Kitap ismi:"+name.getBookName());
+        }
+        System.out.println("================= Sayfa sayısına göre sıralama==================");
+        for (Book page : book1){
+            System.out.println("Sayfa sayısı:"+page.getBookPage()+" Kitap ismi:"+page.getBookName());
+        }
+        }
     }
-}
+
+
